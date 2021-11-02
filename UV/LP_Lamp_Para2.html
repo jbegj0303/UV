@@ -1,0 +1,271 @@
+<!DOCTYPE html>
+<html lang="kr">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>UV</title>
+  <link href="https://fonts.googleapis.com/css2?family=Amatic+SC:wght@400;700&family=Noto+Sans+KR:wght@100;300;400;500;700;900&display=swap"rel="stylesheet">
+  <link rel="stylesheet" href="./css/style.css">
+  <!-- <link rel="stylesheet" href="https://cdn.datatables.net/1.10.25/css/jquery.dataTables.min.css">
+  <link rel="stylesheet" href="https://cdn.datatables.net/responsive/2.2.9/css/responsive.dataTables.min.css"> -->
+</head>
+<body class="scrollbar">
+  <div class="container-xl">
+    <!-- header -->
+    <header class="w-100 align-items-center d-flex bg-white">
+      <nav class="p-2">
+      <ul class="p-2 d-flex">
+        <li class="text-bold"><a href="./index.html">UV</a></li>
+        <li class="help-tip">
+        <p><i class="text-bold">[ 간단 사용법 ]</i><br>
+        <br>
+        1. (필수사항) Input File 이름을 적절히 입력<br>
+        2. (선택사항) Input File 이 저장될 위치를 입력<br>
+        3. 각각의 항목에 맞는 파라미터를 입력합니다.<br>- 일반적으로 Reactor Parameter는 Number of Lamp 와 Water UVT 만 수정하면 됩니다.<br>
+        4. 램프관련 파라미터를 아래의 항목에 입력(중압램프는 두번째 시트도 입력)<br>
+        5. 입력 완료 후 , "Input File Generation" 을 <i class="text-point">더블클릭</i>  하면, 앞서 설정한 위치에 입력파일이 생성됩니다.<br>
+        6. 생성된 입력파일을 CFX Pre 에서 적절히 선택하여 줍니다.
+        </p>
+        </li>
+      </ul>
+      </nav>
+      <div class="search p-2">
+        <div class="">
+          <input type="search"class="form-content" value="Search"/>
+        </div>
+        <a type="button" class="btn"><img src="./image/reading glasses.svg"style="width: 20px;" alt="glasses"></a>
+      </div>
+    </header>
+
+
+      <div class="my-5">
+        <div class="d-flex flex-column d-flex-md-row">
+          <canvas id="line-chart" width="200" height="150" class="line-chart"></canvas>
+
+          <div class="d-flex flex-column text-bold my-5 p-2  justify-content-around">
+            <button type="submit" class="py-2 px-4 btn btn-primary mb-2">Load the Default Data</button>
+            <div class="d-flex d-flex-around">
+              <button type="submit" class="py-2 px-4 btn btn-gray mb-2">RLE Validation</button>
+              <button type="submit" class="py-2 px-4 btn btn-white mb-2 openBtn">Clear All Fields</button>
+            </div>
+            <!-- modal -->
+            <div class="modal hidden">
+              <div class="bg"></div>
+              <div class="modalBox d-flex flex-column d-flex-center">
+                <p>Do you really want to do this?</p>
+                <div class="d-flex">
+                  <button class="openBtn btn btn-primary m-2">Yes</button>
+                  <button class="closeBtn btn btn-white m-2">No</button>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <canvas id="line-chart2" width="200" height="150"class="line-chart"></canvas>
+        </div>
+      </div>
+
+    <div class="p-2">
+      <table class="text-center chart mb-3">
+        <thead class="bg-primary text-bold">
+            <tr>
+              <th colspan="5">Medium Pressure UV LAMP Parameter</th>
+            </tr>
+            <tr>
+                <th>Wave Length [nm]</th>
+                <th>UV Transmittance</th>
+                <th>RLE</th>
+                <th>Quartz UV Transmittance</th>
+                <th>GEF</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+              <th><input type="text" value="180"></th><td><input type="text" value="0.0000"></td><td><input type="text" value="0.0000"></td><td><input type="text" value="0.0000"></td><td><input type="text" value="0%"></td>
+            </tr>
+            <tr>
+              <th><input type="text" value="185"></th><td><input type="text" value="0.0000"></td><td><input type="text" value="0.0000"></td><td><input type="text" value="0.0000"></td><td><input type="text" value="0%"></td>
+            </tr>
+            <tr>
+              <th><input type="text" value="190"></th><td><input type="text" value="0.0068"></td><td><input type="text" value="0.0000"></td><td><input type="text" value="0.0000"></td><td><input type="text" value="0%"></td>
+            </tr>
+            <tr>
+              <th><input type="text" value="195"></th><td><input type="text" value="0.0125"></td><td><input type="text" value="0.0000"></td><td><input type="text" value="0.0000"></td><td><input type="text" value="0%"></td>
+            </tr>
+            <tr>
+              <th><input type="text" value="200"></th><td><input type="text" value="0.0250"></td><td><input type="text" value="0.0223"></td><td><input type="text" value="0.0000"></td><td><input type="text" value="0%"></td>
+            </tr>
+            <!-- ----------- -->
+            <tr>
+              <th><input type="text" value="205"></th><td><input type="text" value="0.0500"></td><td><input type="text" value="0.0251"></td><td><input type="text" value="0.0000"></td><td><input type="text" value="0%"></td>
+            </tr>
+            <tr>
+              <th><input type="text" value="210"></th><td><input type="text" value="0.1000"></td><td><input type="text" value="0.0279"></td><td><input type="text" value="0.0000"></td><td><input type="text" value="0%"></td>
+            </tr>
+            <tr>
+              <th><input type="text" value="215"></th><td><input type="text" value="0.2000"></td><td><input type="text" value="0.0334"></td><td><input type="text" value="0.0000"></td><td><input type="text" value="0%"></td>
+            </tr>
+            <tr>
+              <th><input type="text" value="200"></th><td><input type="text" value="0.4000"></td><td><input type="text" value="0.0446"></td><td><input type="text" value="0.0000"></td><td><input type="text" value="0%"></td>
+            </tr>
+            <tr>
+              <th><input type="text" value="225"></th><td><input type="text" value="0.6000"></td><td><input type="text" value="0.0446"></td><td><input type="text" value="0.0000"></td><td><input type="text" value="0%"></td>
+            </tr>
+            <!-- ------------ -->
+            <tr>
+              <th><input type="text" value="230"></th><td><input type="text" value="0.7000"></td><td><input type="text" value="0.0390"></td><td><input type="text" value="0.0994"></td><td><input type="text" value="26%"></td>
+            </tr>
+            <tr>
+              <th><input type="text" value="235"></th><td><input type="text" value="0.7500"></td><td><input type="text" value="0.0446"></td><td><input type="text" value="0.3103"></td><td><input type="text" value="38%"></td>
+            </tr>
+            <tr>
+              <th><input type="text" value="240"></th><td><input type="text" value="0.8000"></td><td><input type="text" value="0.0446"></td><td><input type="text" value="0.5260"></td><td><input type="text" value="52%"></td>
+            </tr>
+            <tr>
+              <th><input type="text" value="245"></th><td><input type="text" value="0.8500"></td><td><input type="text" value="0.0556"></td><td><input type="text" value="0.6573"></td><td><input type="text" value="64%"></td>
+            </tr>
+            <tr>
+              <th><input type="text" value="250"></th><td><input type="text" value="0.8750"></td><td><input type="text" value="0.0279"></td><td><input type="text" value="0.7361"></td><td><input type="text" value="74%"></td>
+            </tr>
+            <!-- ------------ -->
+            <tr>
+              <th><input type="text" value="255"></th><td><input type="text" value="0.9000"></td><td><input type="text" value="0.1281"></td><td><input type="text" value="0.7848"></td><td><input type="text" value="84%"></td>
+            </tr>
+            <tr>
+              <th><input type="text" value="260"></th><td><input type="text" value="0.9000"></td><td><input type="text" value="0.0446"></td><td><input type="text" value="0.8112"></td><td><input type="text" value="96%"></td>
+            </tr>
+            <tr>
+              <th><input type="text" value="265"></th><td><input type="text" value="0.9100"></td><td><input type="text" value="0.2117"></td><td><input type="text" value="0.8253"></td><td><input type="text" value="100%"></td>
+            </tr>
+            <tr>
+              <th><input type="text" value="270"></th><td><input type="text" value="0.9100"></td><td><input type="text" value="0.0390"></td><td><input type="text" value="0.8153"></td><td><input type="text" value="96%"></td>
+            </tr>
+            <tr>
+              <th><input type="text" value="275"></th><td><input type="text" value="0.9100"></td><td><input type="text" value="0.0334"></td><td><input type="text" value="0.8350"></td><td><input type="text" value="84%"></td>
+            </tr>
+            <!-- ------------ -->
+            <tr>
+              <th><input type="text" value="280"></th><td><input type="text" value="0.9200"></td><td><input type="text" value="0.0000"></td><td><input type="text" value="0.8363"></td><td><input type="text" value="74%"></td>
+            </tr>
+            <tr>
+              <th><input type="text" value="285"></th><td><input type="text" value="0.9200"></td><td><input type="text" value="0.1114"></td><td><input type="text" value="0.8386"></td><td><input type="text" value="64%"></td>
+            </tr>
+            <tr>
+              <th><input type="text" value="290"></th><td><input type="text" value="0.9200"></td><td><input type="text" value="0.0557"></td><td><input type="text" value="0.8403"></td><td><input type="text" value="52%"></td>
+            </tr>
+            <tr>
+              <th><input type="text" value="295"></th><td><input type="text" value="0.9200"></td><td><input type="text" value="0.0167"></td><td><input type="text" value="0.8422"></td><td><input type="text" value="28%"></td>
+            </tr>
+        </tbody>
+      </table>
+    </div>
+
+  </div>
+    
+
+<!-- script -->
+<script src="https://use.fontawesome.com/683db2c529.js"></script>
+<script>"https://code.jquery.com/jquery-3.6.0.min.js"</script>
+
+
+<script>
+  const open = () => {
+    document.querySelector(".modal").classList.remove("hidden");
+  }
+
+  const close = () => {
+    document.querySelector(".modal").classList.add("hidden");
+  }
+
+  document.querySelector(".openBtn").addEventListener("click", open);
+  document.querySelector(".closeBtn").addEventListener("click", close);
+  document.querySelector(".bg").addEventListener("click", close);
+
+</script>
+
+<!-- chart -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.5.0/Chart.min.js"></script>
+
+
+<script>
+  var ctx = document.getElementById("line-chart").getContext("2d");
+  var options = {
+    yAxes: [{
+        ticks: {
+            // suggestedMin:0.0000,
+            // suggestedMax:1.0000,
+            min: 0.0000,
+            max: 1.0000,
+            stepSize: 1
+        }
+    }]
+  }
+  new Chart(document.getElementById("line-chart"), {
+  type: 'line',
+  data: {
+    labels: [180,190,200,210,220,230,240,250,260,270,280,290,300],
+    datasets: [{ 
+        data: [0,0,0,0.0008,3000,6000,7000,8000,8000,8200,8500,8000,8000],
+        label: "UV Transmittance",
+        borderColor: "#8e5ea2",
+        fill: false
+      }, { 
+        data: [0,0,0,0,0,700,4000,6000,9000,5200,4500,2000,1000],
+        label: "GEF",
+        borderColor: "#e17c08",
+        fill: false
+      }
+    ]
+  },
+  options: {
+    title: {
+      display: true,
+      text: 'MP_Lamp_Para'
+    }
+  }
+});
+</script>
+
+
+<script>
+  var ctx = document.getElementById("line-chart2").getContext("2d");
+  var options = {
+    yAxes: [{
+        ticks: {
+            suggestedMin:0.0000,
+            suggestedMax:1.0000,
+            // min: 0.0000,
+            // max: 1.0000,
+            stepSize: 0.2000
+        }
+    }]
+}
+  new Chart(document.getElementById("line-chart2"), {
+  type: 'line',
+  data: {
+    labels: [180,200,220,240,260,280,300],
+    datasets: [{ 
+        data: [0,0,0,0.00044,0.00055,0.00056,0.0009],
+        label: "Quartz UV Transmittance",
+        borderColor: "#e17c08",
+        fill: false
+      }, { 
+        data: [0.00001,0.00001,0.00001,0.00001,0.00011,0.00002,0.00001],
+        label: "RLE",
+        borderColor: "#3e95cd",
+        fill: false
+      }
+    ]
+  },
+  options: {
+    title: {
+      display: true,
+      text: 'MP_Lamp_Para',
+    }
+  }
+});
+</script>
+
+</body>
+</html>

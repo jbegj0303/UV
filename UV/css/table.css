@@ -1,0 +1,84 @@
+table{
+
+    width: 100%;
+    border-collapse: collapse;
+}
+
+thead,tbody{
+    border: none;
+    text-align: center;
+}
+tr,th,td{
+    border: 1px solid #666;
+    padding: 0.25rem;
+}
+
+th,td input{
+    width: 70px;
+}
+tr, input{
+    width: 70px;
+    background: none;
+}
+
+table, th, td {
+    vertical-align: middle;
+}
+
+
+/* 양끝없는 table */
+
+/* th:first-child, td:first-child {
+    border-left: none;
+} */
+.chart{
+    width: 100%;
+}
+
+.md-table{
+    width: 100%;
+}
+.table-bg{
+    background-color: rgb(233, 233, 233);
+}
+.table{
+    width: 100%;
+
+}
+@media (max-width:500px) {
+    .chart {
+        max-width: 500px;
+        margin: 0 auto;
+    }
+    .table-bg{
+        background: none;
+    }
+}
+@media (min-width:501px) {
+    .chart {
+        max-width: 900px;
+        /* margin: 0 auto; */
+    }
+}
+@media (min-width:768px) {
+    .md-table {
+        max-width: 500px;
+        margin: 0 auto;
+    }
+}
+@media (min-width:501px){
+.table-box{
+    max-width: 1400px;
+    margin: 0 auto;
+    justify-content: space-around;
+}
+.table{
+    max-width: 1100px;
+    margin: 0 auto;
+}
+.media{
+    max-width: 900px;
+    margin: 0 auto;
+    justify-content: start;
+}
+}

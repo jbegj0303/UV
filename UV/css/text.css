@@ -1,0 +1,14 @@
+.text-bold{
+  font-weight: bold;
+}
+.text-center{
+  text-align: center;
+}
+/* .text-gray{
+  text-align: center;
+  color: #8d8d8d;
+} */
+
+.text-point{
+  color: rgb(236, 123, 17);
+}

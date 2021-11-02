@@ -1,0 +1,436 @@
+<!DOCTYPE html>
+<html lang="kr">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>UV</title>
+  <link href="https://fonts.googleapis.com/css2?family=Amatic+SC:wght@400;700&family=Noto+Sans+KR:wght@100;300;400;500;700;900&display=swap"rel="stylesheet">
+  <link rel="stylesheet" href="./css/style.css">
+  <link rel="stylesheet" href="./css/datatables.css">
+  <link rel="stylesheet" href="./css/responsive.dataTables.css">
+  
+  
+  <!-- <link rel="stylesheet" href="https://cdn.datatables.net/1.10.25/css/jquery.dataTables.min.css">
+  <link rel="stylesheet" href="https://cdn.datatables.net/responsive/2.2.9/css/responsive.dataTables.min.css"> -->
+</head>
+<body class="scrollbar">
+  <div class="container-xl">
+    <!-- header -->
+    <header class="w-100 align-items-center d-flex bg-white">
+      <nav class="p-2">
+      <ul class="p-2 d-flex">
+        <li class="text-bold"><a href="./index.html">UV</a></li>
+        <li class="help-tip">
+        <p><i class="text-bold">[ 간단 사용법 ]</i><br>
+        <br>
+        1. (필수사항) Input File 이름을 적절히 입력<br>
+        2. (선택사항) Input File 이 저장될 위치를 입력<br>
+        3. 각각의 항목에 맞는 파라미터를 입력합니다.<br>- 일반적으로 Reactor Parameter는 Number of Lamp 와 Water UVT 만 수정하면 됩니다.<br>
+        4. 램프관련 파라미터를 아래의 항목에 입력(중압램프는 두번째 시트도 입력)<br>
+        5. 입력 완료 후 , "Input File Generation" 을 <i class="text-point">더블클릭</i>  하면, 앞서 설정한 위치에 입력파일이 생성됩니다.<br>
+        6. 생성된 입력파일을 CFX Pre 에서 적절히 선택하여 줍니다.
+        </p>
+        </li>
+      </ul>
+      </nav>
+      <!-- <div class="search p-2">
+        <div class="">
+          <input type="search"class="form-content" value="Search"/>
+        </div>
+        <a type="button" class="btn"><img src="./image/reading glasses.svg"style="width: 20px;" alt="glasses"></a>
+      </div> -->
+    </header>
+    <div class="my-3">
+      <div class="media-img d-flex flex-column d-flex-md-row d-flex-around">
+        <div class="d-flex flex-column">
+          <h1 style="color:gray;">CFX UVCal Routine<br>Input File Generator for V17.2</h1>
+          <a href="./LP_Lamp_Para3.html"class="btn btn-next py-2 px-5 my-3">LP_Lamp_para
+            <i class="fa fa-angle-double-right" aria-hidden="true"></i>
+          </a>
+        </div>
+        <img src="./image/chart.svg" alt="chart"style="opacity: 30%;">
+      </div>
+    </div>
+
+    <!-- input -->
+    <section class="p-2 my-5 media-section">
+      <div class="d-flex">
+        <p class="px-5 mr-2 bg-gray">File Name</p>
+        <input class="input-group input-set px-5" type="text"value="UV Input">
+      </div>
+      <div class="filebox">
+        <input class="upload-name px-4 py-2"type="text" value="FALSE"style="width: 400px;">
+        <label class="btn btn-primary px-4 py-2" for="file"><i class="fa fa-upload" aria-hidden="true"></i></label>
+        <input type="file" id="file">
+      </div>
+    </section>
+
+    <div>
+      <div class="media-box p-2 text-center my-3 d-flex flex-column d-flex-md-row"style="height: 250px;">
+        <div> 
+          <table class=""  width="100%"> 
+            <thead>
+              <tr class="text-bold">
+                <th colspan="4" class="bg-primary">Reactor Parameter</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>Number of Lamp</td><td ><input type="text" value="3"></td>
+                <td>Water Refractive Index</td><td><input type="text" value="1.33"></td>
+              </tr>
+              <tr>
+                <td>Water UVT [%]</td><td><input type="text" value="98"></td>
+                <td>Air Refractive Index</td><td><input type="text" value="1"></td>
+              </tr>
+              <tr>
+                <td>Correlation Factor</td><td><input type="text" value="1.1013"></td>
+                <td>UV Radiation Model</td><td><input type="text" value="0"></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="my-2">
+          <div class="filebox d-flex flex-column" style="height:160px; justify-content: space-around;">
+            <div>
+              <input class="upload-name py-2"type="text" value="FALSE" style="width: 380px;">
+            </div>
+            <div class="d-flex justify-content-between">
+                <label class="btn btn-primary px-6 py-2" for="file"><i class="fa fa-upload" aria-hidden="true"></i></label>
+                <input type="file" id="file">
+                <button type="submit"value="내용초기화" class="btn btn-white openBtn px-4 py-2 text-bold">Clear Field</button>
+            </div>
+          </div>
+
+          <!-- modal -->
+          <div class="modal hidden">
+            <div class="bg"></div>
+            <div class="modalBox d-flex flex-column d-flex-center">
+              <p>Do you really want to do this?</p>
+              <div class="d-flex">
+                <button class="openBtn btn btn-primary m-2">Yes</button>
+                <button class="closeBtn btn btn-white m-2">No</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- table-chart -->
+
+  <div class="bg-box my-5">
+    <div class="p-2">
+
+    <div class="media">
+
+        <div class="mb-3">
+        <div class="table-btn">
+          <button style="color: #6a82ad;" class="btn my-3 " id="addRow">Row</button>
+          <button class="btn" id="button">Delete</button>
+          <input style="color: #6a82ad;" class="btn" type='button' value='Column' onclick='addColumn()'/>
+          <input class="btn" type='button' value='Delete' onclick='deleteColumn()' />
+        </div>
+
+          <table id="example" class="display nowrap responsive" style="width: 100%;background:#fff;">
+            <thead class="text-bold">
+                <tr class="bg-gray">
+                    <th colspan="4"style="width:10%;">Lamp Center coordinate</th>
+                </tr>
+                <tr class="bg-white">
+                    <th></th>
+                    <th>x[m]</th>
+                    <th>y[m]</th>
+                    <th>z[m]</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <th>1</th>
+                    <td><input type="text" value="-0.045"></td>
+                    <td><input type="text" value="0.077942"></td>
+                    <td><input type="text" value="0"></td>
+                </tr>
+                <tr>
+                    <th>2</th>
+                    <td><input type="text" value="-0.045"></td>
+                    <td><input type="text" value="-0.077942"></td>
+                    <td><input type="text" value="0"></td>
+                </tr>
+                <tr>
+                    <th>3</th>
+                    <td><input type="text" value="0.09"></td>
+                    <td><input type="text" value="0"></td>
+                    <td><input type="text" value="0"></td>
+                </tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="mb-3">
+
+          <!-- <div class="d-flex row d-flex-start">
+            <button class="btn btn-primary my-3 mr-2" id="addRow">row</button>
+            <button class="btn btn-white mr-2" id="button">Delete</button>
+            <input class="btn btn-primary mr-2" type='button' value='column' onclick='addColumn()' />
+            <input class="btn btn-white" type='button' value='Delete' onclick='deleteColumn()' />
+          </div> -->
+
+          <table  id="example2" class="display nowrap responsive" style="width: 100%; background:#fff;">
+            <thead class="text-bold">
+                <tr class="bg-primary">
+                    <th colspan="7"style="width:10%;">Lamp Performance Parameter</th>
+                </tr>
+                <tr class="bg-white">
+                    <th></th>
+                    <th>Lamp Type</th>
+                    <th>Power [W]</th>
+                    <th>Power Setting [%]</th>
+                    <th>Eff. [%]</th>
+                    <th>Dia [m]</th>
+                    <th>Arc Len. [m]</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <th>1</th>
+                    <th><input type="text" value="1"></th>
+                    <td><input type="text" value="4000"></td>
+                    <td><input type="text" value="100"></td>
+                    <td><input type="text" value="12"></td>
+                    <td><input type="text" value="0.022"></td>
+                    <td><input type="text" value="0.35"></td>
+                </tr>
+                <tr>
+                    <th>2</th>
+                    <th><input type="text" value="1"></th>
+                    <td><input type="text" value="4000"></td>
+                    <td><input type="text" value="100"></td>
+                    <td><input type="text" value="12"></td>
+                    <td><input type="text" value="0.022"></td>
+                    <td><input type="text" value="0.35"></td>
+                </tr>
+                <tr>
+                    <th>3</th>
+                    <th><input type="text" value="1"></th>
+                    <td><input type="text" value="4000"></td>
+                    <td><input type="text" value="100"></td>
+                    <td><input type="text" value="12"></td>
+                    <td><input type="text" value="0.022"></td>
+                    <td><input type="text" value="0.35"></td>
+                </tr>
+            </tbody>
+          </table>
+        </div>
+        
+        <div class="mb-3">
+          <!-- <div class="d-flex row d-flex-start">
+            <button class="btn btn-primary my-3 mr-2" id="addRow">row</button>
+            <button class="btn btn-white mr-2" id="button">Delete</button>
+            <input class="btn btn-primary mr-2" type='button' value='column' onclick='addColumn()' />
+            <input class="btn btn-white" type='button' value='Delete' onclick='deleteColumn()' />
+          </div> -->
+          <table id="example3" class="display nowrap responsive"style="width: 100%;background:#fff;">
+            <thead class="text-bold">
+                <tr class="bg-gray">
+                    <th colspan="5"style="width:10%;">Sleeve Parameter</th>
+                </tr>
+                <tr class="bg-white">
+                    <th></th>
+                    <th>RI</th>
+                    <th>Dia. [m]</th>
+                    <th>Thickness [m]</th>
+                    <th>Transmittance [%]</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <th>1</th>
+                    <th><input type="text" value="1.459"></th>
+                    <td><input type="text" value="0.04"></td>
+                    <td><input type="text" value="0.003"></td>
+                    <td><input type="text" value="89"></td>
+                </tr>
+                <tr>
+                    <th>2</th>
+                    <th><input type="text" value="1.459"></th>
+                    <td><input type="text" value="0.04"></td>
+                    <td><input type="text" value="0.003"></td>
+                    <td><input type="text" value="89"></td>
+                </tr>
+                <tr>
+                    <th>3</th>
+                    <th><input type="text" value="1.459"></th>
+                    <td><input type="text" value="0.04"></td>
+                    <td><input type="text" value="0.003"></td>
+                    <td><input type="text" value="89"></td>
+                </tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="mb-3">
+          <!-- <div class="d-flex row d-flex-start">
+            <button class="btn btn-primary my-3 mr-2" id="addRow">row</button>
+            <button class="btn btn-white mr-2" id="button">Delete</button>
+            <input class="btn btn-primary mr-2" type='button' value='column' onclick='addColumn()' />
+            <input class="btn btn-white" type='button' value='Delete' onclick='deleteColumn()' />
+          </div> -->
+          <table id="example4" class="display nowrap responsive"style="width:100%;background:#fff;">
+            <thead class="text-bold">
+                <tr class="bg-primary">
+                    <th colspan="4"style="width:10%;">Direction Vector</th>
+                </tr>
+                <tr class="bg-white">
+                    <th></th>
+                    <th>u</th>
+                    <th>v</th>
+                    <th>w</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <th>1</th>
+                    <td><input type="text" value="0.00"></td>
+                    <td><input type="text" value="0.00"></td>
+                    <td><input type="text" value="1.00"></td>
+                </tr>
+                <tr>
+                    <th>2</th>
+                    <td><input type="text" value="0.00"></td>
+                    <td><input type="text" value="0.00"></td>
+                    <td><input type="text" value="1.00"></td>
+                </tr>
+                <tr>
+                    <th>3</th>
+                    <td><input type="text" value="0.00"></td>
+                    <td><input type="text" value="0.00"></td>
+                    <td><input type="text" value="1.00"></td>
+                </tr>
+            </tbody>
+          </table>
+        </div>
+
+    </div>
+
+    </div>
+  </div>
+
+  </div>
+
+
+<script src="https://use.fontawesome.com/683db2c529.js"></script>
+<script>"https://code.jquery.com/jquery-3.6.0.min.js"</script>
+<script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+<script>"https://cdn.datatables.net/1.11.3/js/jquery.dataTables.min.js"</script>
+<script src="./js/datatables.js"></script>
+
+
+<!-- table setting-->
+<script>
+  $(document).ready(function() {
+    //table 1 setting
+    var t = $('#example').DataTable();
+
+    //table 2 setting
+    var t2 = $('#example2').DataTable();
+
+    //table 3 setting
+    var t3 = $('#example3').DataTable();
+
+    //table 4 setting
+    var t4 = $('#example4').DataTable();
+
+
+    var counter = 1;
+    
+    $('#addRow').on( 'click', function () {
+    t.row.add( [
+    '<input type="text">',
+    '<input type="text">',
+    '<input type="text">',
+    '<input type="text">',
+    '<input type="text">'
+    ] ).draw( false );
+    
+    counter++;
+    } );
+  } );
+</script>
+
+<!-- addColumn -->
+  <script>
+    function addColumn() {
+      const table = document.getElementById('example');
+    
+      //
+      for(let i = 0; i < table.rows.length; i++)  {
+        if(i>0){
+          const newCell =table.rows[i].insertCell(-1);
+          const input = document.createElement('input');
+          input.type="text";
+          console.log(input)
+          newCell.appendChild(input);
+          console.log(newCell)
+        }else{
+          const th = table.rows[i].querySelector('th');
+          const currentColspan = th.getAttribute('colspan');
+          th.setAttribute("colspan", currentColspan + 1);
+        }
+      }
+}
+  </script>
+
+<!-- deleteColumn -->
+  <script>
+    function deleteColumn() {
+    const table = document.getElementById('example');
+    
+    for(let i = 0; i < table.rows.length; i++)  {
+      table.rows[i].deleteCell(-1);
+    }
+}
+  </script>
+
+<!-- input selected delete column -->
+  <script>
+    $(document).ready(function() {
+      var table = $('#example').DataTable();
+      $('#example tbody').on( 'click', 'tr', function () {
+          if ( $(this).hasClass('selected') ) {
+              $(this).removeClass('selected');
+          }
+          else {
+              table.$('tr.selected').removeClass('selected');
+              $(this).addClass('selected');
+          }
+      } );
+  
+      $('#button').click( function () {
+          table.row('.selected').remove().draw( false );
+      } );
+  } );
+  </script>
+
+
+
+
+
+
+<!-- modal -->
+<script>
+  const open = () => {
+    document.querySelector(".modal").classList.remove("hidden");
+  }
+
+  const close = () => {
+    document.querySelector(".modal").classList.add("hidden");
+  }
+
+  document.querySelector(".openBtn").addEventListener("click", open);
+  document.querySelector(".closeBtn").addEventListener("click", close);
+  document.querySelector(".bg").addEventListener("click", close);
+
+</script>
+
+</body>
+</html>
