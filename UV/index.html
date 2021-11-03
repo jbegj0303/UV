@@ -167,14 +167,15 @@
             </tbody>
           </table>
         </div>
+
         <div class="mb-3">
 
-          <!-- <div class="d-flex row d-flex-start">
-            <button class="btn btn-primary my-3 mr-2" id="addRow">row</button>
-            <button class="btn btn-white mr-2" id="button">Delete</button>
-            <input class="btn btn-primary mr-2" type='button' value='column' onclick='addColumn()' />
-            <input class="btn btn-white" type='button' value='Delete' onclick='deleteColumn()' />
-          </div> -->
+          <div class="">
+            <button style="color: #6a82ad;" class="btn my-3" id="addRow2">Row</button>
+            <button class="btn" id="button2">Delete</button>
+            <input style="color: #6a82ad;" class="btn" type='button' value='Column' onclick='addColumn2()' />
+            <input class="btn" type='button' value='Delete' onclick='deleteColumn2()' />
+          </div>
 
           <table  id="example2" class="display nowrap responsive" style="width: 100%; background:#fff;">
             <thead class="text-bold">
@@ -224,12 +225,14 @@
         </div>
         
         <div class="mb-3">
-          <!-- <div class="d-flex row d-flex-start">
-            <button class="btn btn-primary my-3 mr-2" id="addRow">row</button>
-            <button class="btn btn-white mr-2" id="button">Delete</button>
-            <input class="btn btn-primary mr-2" type='button' value='column' onclick='addColumn()' />
-            <input class="btn btn-white" type='button' value='Delete' onclick='deleteColumn()' />
-          </div> -->
+
+          <div class="">
+            <button style="color: #6a82ad;" class="btn my-3" id="addRow3">Row</button>
+            <button class="btn" id="button3">Delete</button>
+            <input style="color: #6a82ad;" class="btn" type='button' value='Column' onclick='addColumn3()' />
+            <input class="btn" type='button' value='Delete' onclick='deleteColumn3()' />
+          </div>
+
           <table id="example3" class="display nowrap responsive"style="width: 100%;background:#fff;">
             <thead class="text-bold">
                 <tr class="bg-gray">
@@ -268,13 +271,16 @@
             </tbody>
           </table>
         </div>
+
         <div class="mb-3">
-          <!-- <div class="d-flex row d-flex-start">
-            <button class="btn btn-primary my-3 mr-2" id="addRow">row</button>
-            <button class="btn btn-white mr-2" id="button">Delete</button>
-            <input class="btn btn-primary mr-2" type='button' value='column' onclick='addColumn()' />
-            <input class="btn btn-white" type='button' value='Delete' onclick='deleteColumn()' />
-          </div> -->
+
+          <div class="">
+            <button style="color: #6a82ad;" class="btn my-3" id="addRow4">Row</button>
+            <button class="btn" id="button4">Delete</button>
+            <input style="color: #6a82ad;" class="btn" type='button' value='Column' onclick='addColumn4()' />
+            <input class="btn" type='button' value='Delete' onclick='deleteColumn4()' />
+          </div>
+
           <table id="example4" class="display nowrap responsive"style="width:100%;background:#fff;">
             <thead class="text-bold">
                 <tr class="bg-primary">
@@ -340,7 +346,6 @@
     //table 4 setting
     var t4 = $('#example4').DataTable();
 
-
     var counter = 1;
     
     $('#addRow').on( 'click', function () {
@@ -351,9 +356,33 @@
     '<input type="text">',
     '<input type="text">'
     ] ).draw( false );
-    
+
     counter++;
     } );
+    $('#addRow').click();
+  } );
+</script>
+
+<script>
+  $(document).ready(function() {
+
+    //table 2 setting
+    var t2 = $('#example2').DataTable();
+
+    var counter = 1;
+    
+    $('#addRow2').on( 'click', function () {
+    t2.row.add( [
+    '<input type="text">',
+    '<input type="text">',
+    '<input type="text">',
+    '<input type="text">',
+    '<input type="text">'
+    ] ).draw( false );
+
+    counter++;
+    } );
+    $('#addRow2').click();
   } );
 </script>
 
@@ -380,15 +409,111 @@
 }
   </script>
 
+  <script>
+    function addColumn2() {
+      const table = document.getElementById('example2');
+    
+      //
+      for(let i = 0; i < table.rows.length; i++)  {
+        if(i>0){
+          const newCell =table.rows[i].insertCell(-1);
+          const input = document.createElement('input');
+          input.type="text";
+          console.log(input)
+          newCell.appendChild(input);
+          console.log(newCell)
+        }else{
+          const th = table.rows[i].querySelector('th');
+          const currentColspan = th.getAttribute('colspan');
+          th.setAttribute("colspan", currentColspan + 1);
+        }
+      }
+}
+  </script>
+
+  <script>
+    function addColumn3() {
+      const table = document.getElementById('example3');
+
+      //
+      for(let i = 0; i < table.rows.length; i++)  {
+        if(i>0){
+          const newCell =table.rows[i].insertCell(-1);
+          const input = document.createElement('input');
+          input.type="text";
+          console.log(input)
+          newCell.appendChild(input);
+          console.log(newCell)
+        }else{
+          const th = table.rows[i].querySelector('th');
+          const currentColspan = th.getAttribute('colspan');
+          th.setAttribute("colspan", currentColspan + 1);
+        }
+      }
+}
+  </script>
+
+  <script>
+    function addColumn4() {
+      const table = document.getElementById('example4');
+
+      //
+      for(let i = 0; i < table.rows.length; i++)  {
+        if(i>0){
+          const newCell =table.rows[i].insertCell(-1);
+          const input = document.createElement('input');
+          input.type="text";
+          console.log(input)
+          newCell.appendChild(input);
+          console.log(newCell)
+        }else{
+          const th = table.rows[i].querySelector('th');
+          const currentColspan = th.getAttribute('colspan');
+          th.setAttribute("colspan", currentColspan + 1);
+        }
+      }
+}
+  </script>
+
 <!-- deleteColumn -->
   <script>
     function deleteColumn() {
-    const table = document.getElementById('example');
-    
-    for(let i = 0; i < table.rows.length; i++)  {
-      table.rows[i].deleteCell(-1);
-    }
-}
+      const table = document.getElementById('example');
+      
+      for(let i = 0; i < table.rows.length; i++)  {
+        table.rows[i].deleteCell(-1);
+      }
+  }
+  </script>
+
+  <script>
+    function deleteColumn2() {
+      const table = document.getElementById('example2');
+      
+      for(let i = 0; i < table.rows.length; i++)  {
+        table.rows[i].deleteCell(-1);
+      }
+  }
+  </script>
+
+  <script>
+    function deleteColumn3() {
+      const table = document.getElementById('example3');
+      
+      for(let i = 0; i < table.rows.length; i++)  {
+        table.rows[i].deleteCell(-1);
+      }
+  }
+  </script>
+
+  <script>
+    function deleteColumn4() {
+      const table = document.getElementById('example4');
+      
+      for(let i = 0; i < table.rows.length; i++)  {
+        table.rows[i].deleteCell(-1);
+      }
+  }
   </script>
 
 <!-- input selected delete column -->
@@ -406,6 +531,63 @@
       } );
   
       $('#button').click( function () {
+          table.row('.selected').remove().draw( false );
+      } );
+  } );
+  </script>
+
+  <script>
+    $(document).ready(function() {
+      var table = $('#example2').DataTable();
+      $('#example2 tbody').on( 'click', 'tr', function () {
+          if ( $(this).hasClass('selected') ) {
+              $(this).removeClass('selected');
+          }
+          else {
+              table.$('tr.selected').removeClass('selected');
+              $(this).addClass('selected');
+          }
+      } );
+
+      $('#button2').click( function () {
+          table.row('.selected').remove().draw( false );
+      } );
+  } );
+  </script>
+
+  <script>
+    $(document).ready(function() {
+      var table = $('#example3').DataTable();
+      $('#example3 tbody').on( 'click', 'tr', function () {
+          if ( $(this).hasClass('selected') ) {
+              $(this).removeClass('selected');
+          }
+          else {
+              table.$('tr.selected').removeClass('selected');
+              $(this).addClass('selected');
+          }
+      } );
+
+      $('#button3').click( function () {
+          table.row('.selected').remove().draw( false );
+      } );
+  } );
+  </script>
+
+  <script>
+    $(document).ready(function() {
+      var table = $('#example4').DataTable();
+      $('#example4 tbody').on( 'click', 'tr', function () {
+          if ( $(this).hasClass('selected') ) {
+              $(this).removeClass('selected');
+          }
+          else {
+              table.$('tr.selected').removeClass('selected');
+              $(this).addClass('selected');
+          }
+      } );
+
+      $('#button4').click( function () {
           table.row('.selected').remove().draw( false );
       } );
   } );
