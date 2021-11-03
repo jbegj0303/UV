@@ -232,21 +232,12 @@ border: 1px solid #666;
 .media-button{
   width: 100%;
 }
-.table-btn{
-  width: 100%;
-}
+
 @media (min-width:501px){
   .media-button{
     max-width: 900px;
     margin: 0 auto;
     align-items: center;
     justify-content: space-around;
-  }
-  .table-btn{
-    max-width: 1100px;
-    display: flex;
-    align-items: center;
-    margin: 0 auto;
-    justify-content:end;
   }
 }

@@ -101,15 +101,10 @@ input:focus {outline:none;}
   align-items: center;
   position: relative;
 }
-/* .input-box{
-  width: 200px;
-  height: 35px;
-} */
 
 .filebox .upload-name {
   display: inline-block;
   height: 100%;
-  /* padding: 0 10px; */
   vertical-align: middle;
   border: 1px solid #ececec;
   width: 600px;
@@ -118,16 +113,10 @@ input:focus {outline:none;}
 .filebox label {
   text-align: center;
   display: inline-block;
-  /* padding: 10px 20px; */
   color: #000000;
   vertical-align: middle;
   background-color: #C8CFDB;
   cursor: pointer;
-  /* display: flex;
-  justify-self: center;
-  align-items: center; */
-  /* height: 40px;
-  margin-left: 10px; */
 }
 .filebox input[type="file"] {
   position: absolute;
@@ -274,7 +263,6 @@ input::-webkit-search-results-decoration
 
 .canvas{
   width: 100%;
-  color: rgb(233, 201, 57);
 }
 
 @media (min-width:501px){
@@ -304,8 +292,8 @@ input::-webkit-search-results-decoration
     align-items: center;
   }
   .canvas{
-    max-width: 1100px;
-    height: 450px;
+    max-width: 500px;
+    height: 900px;
     margin: 0 auto;
   }
 }
@@ -347,5 +335,10 @@ input::-webkit-search-results-decoration
     align-items: center;
     border-radius: 2px;
     box-shadow:3px 2px 2px 2px rgb(93, 109, 129);
+  }
+  .canvas{
+    max-width: 1100px;
+    height: 450px;
+    margin: 0 auto;
   }
 }
