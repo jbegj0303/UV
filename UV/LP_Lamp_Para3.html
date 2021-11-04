@@ -68,10 +68,13 @@
     <div class="p-2">
       <div class="table my-5">
         <div class="">
-          <button style="color: #6a82ad;" class="btn my-3" id="addRow">Row</button>
-          <button class="btn" id="button">Delete</button>
-          <input style="color: #6a82ad;" class="btn" type='button' value='Column' onclick='addColumn()' />
-          <input class="btn" type='button' value='Delete' onclick='deleteColumn()' />
+          <!-- <button style="color: #6a82ad;" class="btn my-3" id="addRow">Row</button> -->
+          <input type="button"value="Row"onclick="addRow()"/>
+          <!-- <button class="btn" id="button">Delete</button> -->
+          <!-- <input style="color: #6a82ad;" class="btn" type='button' value='Column' onclick='addColumn()' /> -->
+          <input type="button" value="Column" onclick="addColumn()"/>
+          <!-- <input class="btn" type='button' value='Delete' onclick='deleteColumn()' /> -->
+          <input type="button" value="Delete" onclick="deleteColumn()"/>
         </div>
         <table id="example" class="display nowrap responsive"  width="100%">
           <thead class="text-bold">
@@ -179,14 +182,54 @@
 
   </div>
     
+  <script>
+    var newRow = HTMLTableElement.insertRow(index);
+    //열 delete
+    function deleteColumn() {
+      const table = document.getElementById('example');
+
+      for(let i = 0; i < table.rows.length; i++) {
+        table.rows[i].deleteCell(-1);
+      }
+    }
+  </script>
+  <script>
+    //열 new
+    function addColumn() {
+      const table = document.getElementById('example');
+
+        for(let i = 0; i < table.rows.length; i++)  {
+        if(i>0){
+          const newCell =table.rows[i].insertCell(-1);
+          const input = document.createElement('input');
+          input.type="text";
+          console.log(input)
+          newCell.appendChild(input);
+          console.log(newCell)
+        }else{
+          const th = table.rows[i].querySelector('th');
+          const currentColspan = th.getAttribute('colspan');
+          th.setAttribute("colspan", currentColspan + 1);
+        }
+      }
+    }
+    
+  </script>
+  <script>
+    //add row
+    
+  </script>
+
+
   <script src="https://use.fontawesome.com/683db2c529.js"></script>
   <script>"https://code.jquery.com/jquery-3.6.0.min.js"</script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
   <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
   <script src="./js/datatables.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.5.0/Chart.min.js"></script>
+
   <!-- column row -->
-  <script>
+  <!-- <script>
     function addColumn() {
       const table = document.getElementById('example');
     
@@ -205,11 +248,11 @@
           th.setAttribute("colspan", currentColspan + 1);
         }
       }
-}
-  </script>
+    }
+  </script> -->
 
 <!-- delete column -->
-  <script>
+  <!-- <script>
     function deleteColumn() {
     const table = document.getElementById('example');
     
@@ -217,26 +260,26 @@
       table.rows[i].deleteCell(-1);
     }
 }
-  </script>
+  </script> -->
   
 
   
   <script>
     $(document).ready(function() {
     var t = $('#example').DataTable();
-    var counter = 1;
+    // var counter = 1;
     
-    $('#addRow').on( 'click', function () {
-    t.row.add( [
-    '<input type="text">',
-    '<input type="text">',
-    '<input type="text">',
-    '<input type="text">',
-    '<input type="text">'
-    ] ).draw( false );
+    // $('#addRow').on( 'click', function () {
+    // t.row.add( [
+    // '<input type="text">',
+    // '<input type="text">',
+    // '<input type="text">',
+    // '<input type="text">',
+    // '<input type="text">'
+    // ] ).draw( false );
     
-    counter++;
-    } );
+    // counter++;
+    // } );
   } );
     
   </script>

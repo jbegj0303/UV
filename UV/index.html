@@ -363,26 +363,23 @@
   } );
 </script>
 
+<!-- 여기서부터하기 row 추가 -->
 <script>
-  $(document).ready(function() {
-
+    $(document).ready(function() {
+    
     //table 2 setting
     var t2 = $('#example2').DataTable();
 
     var counter = 1;
     
-    $('#addRow2').on( 'click', function () {
-    t2.row.add( [
-    '<input type="text">',
-    '<input type="text">',
-    '<input type="text">',
-    '<input type="text">',
+    $('#addRow').on( 'click', function () {
+    t.row.add( [
     '<input type="text">'
     ] ).draw( false );
 
     counter++;
     } );
-    $('#addRow2').click();
+    $('#addRow').click();
   } );
 </script>
 
