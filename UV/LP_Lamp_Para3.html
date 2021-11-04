@@ -70,7 +70,7 @@
         <div class="">
           <!-- <button style="color: #6a82ad;" class="btn my-3" id="addRow">Row</button> -->
           <input type="button"value="Row"onclick="addRow()"/>
-          <!-- <button class="btn" id="button">Delete</button> -->
+          <button class="btn" id="button">Delete</button>
           <!-- <input style="color: #6a82ad;" class="btn" type='button' value='Column' onclick='addColumn()' /> -->
           <input type="button" value="Column" onclick="addColumn()"/>
           <!-- <input class="btn" type='button' value='Delete' onclick='deleteColumn()' /> -->
@@ -184,7 +184,7 @@
     
   <script>
     var newRow = HTMLTableElement.insertRow(index);
-    //열 delete
+    //column delete
     function deleteColumn() {
       const table = document.getElementById('example');
 
@@ -194,7 +194,7 @@
     }
   </script>
   <script>
-    //열 new
+    //new column
     function addColumn() {
       const table = document.getElementById('example');
 
