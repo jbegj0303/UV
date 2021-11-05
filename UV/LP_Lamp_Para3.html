@@ -12,10 +12,10 @@
   <link rel="stylesheet" href="./css/responsive.dataTables.css">
 </head>
 
-<body class="scrollbar"style="background:#EEEDE7">
+<body class="scrollbar"style="background:#f1f0ee">
   <div class="container-xl">
     <!-- header -->
-    <header class="w-100 align-items-center d-flex bg-white">
+    <header class="w-100 align-items-center d-flex">
       <nav class="p-2">
       <ul class="p-2 d-flex">
         <li class="text-bold"><a href="./index.html">MP_Lamp_Para</a></li>
@@ -49,8 +49,8 @@
 
     <div class="d-flex flex-column d-flex-sm-row text-bold my-5 p-2 media-button">
       <button type="submit" class="py-2 px-4 btn line-primary">Load the Default Data</button>
-      <button type="submit" class="py-2 px-4 btn line-gray">RLE Validation</button>
-      <button type="submit" class="py-2 px-4 btn line-white openBtn">Clear All Fields</button>
+      <button type="submit" class="py-2 px-4 btn line-white">RLE Validation</button>
+      <button type="submit" class="py-2 px-4 btn line-gray openBtn">Clear All Fields</button>
 
       <!-- modal -->
       <div class="modal hidden">
@@ -68,11 +68,10 @@
     <div class="p-2">
       <div class="table my-5">
         <div class="">
-          <!-- <button style="color: #6a82ad;" class="btn my-3" id="addRow">Row</button> -->
-          <input type="button"value="Row"onclick="addRow()"/>
+          <button style="color: #6a82ad;" class="btn my-3" id="addRow">Row</button>
           <button class="btn" id="button">Delete</button>
           <!-- <input style="color: #6a82ad;" class="btn" type='button' value='Column' onclick='addColumn()' /> -->
-          <input type="button" value="Column" onclick="addColumn()"/>
+          <input  style="color: #6a82ad;" type="button" value="Column" onclick="addColumn()"/>
           <!-- <input class="btn" type='button' value='Delete' onclick='deleteColumn()' /> -->
           <input type="button" value="Delete" onclick="deleteColumn()"/>
         </div>
@@ -182,17 +181,65 @@
 
   </div>
     
+  <script src="https://use.fontawesome.com/683db2c529.js"></script>
+  <script>"https://code.jquery.com/jquery-3.6.0.min.js"</script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+  <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+  <script src="./js/datatables.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.5.0/Chart.min.js"></script>
+
+
+  <script>
+    //datable 
+    $(document).ready(function() {
+    var t = $('#example').DataTable();
+    var counter = 1;
+    //row input 생성//
+    $('#addRow').on( 'click', function () {
+    t.row.add( [
+    '<input type="text">',
+    '<input type="text">',
+    '<input type="text">',
+    '<input type="text">',
+    '<input type="text">'
+    ] ).draw( false );
+    
+    counter++;
+    } );
+  } );
+  </script>
+
+  <script>
+    //row selected remove//
+    $(document).ready(function() {
+      var table = $('#example').DataTable();
+      $('#example tbody').on( 'click', 'tr', function () {
+          if ( $(this).hasClass('selected') ) {
+              $(this).removeClass('selected');
+          }
+          else {
+              table.$('tr.selected').removeClass('selected');
+              $(this).addClass('selected');
+          }
+      } );
+  
+      $('#button').click( function () {
+          table.row('.selected').remove().draw( false );
+      } );
+  } );
+  </script>
+
   <script>
     var newRow = HTMLTableElement.insertRow(index);
     //column delete
     function deleteColumn() {
       const table = document.getElementById('example');
-
       for(let i = 0; i < table.rows.length; i++) {
         table.rows[i].deleteCell(-1);
       }
     }
   </script>
+
   <script>
     //new column
     function addColumn() {
@@ -213,20 +260,7 @@
         }
       }
     }
-    
   </script>
-  <script>
-    //add row
-    
-  </script>
-
-
-  <script src="https://use.fontawesome.com/683db2c529.js"></script>
-  <script>"https://code.jquery.com/jquery-3.6.0.min.js"</script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
-  <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
-  <script src="./js/datatables.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.5.0/Chart.min.js"></script>
 
   <!-- column row -->
   <!-- <script>
@@ -262,49 +296,6 @@
 }
   </script> -->
   
-
-  
-  <script>
-    $(document).ready(function() {
-    var t = $('#example').DataTable();
-    // var counter = 1;
-    
-    // $('#addRow').on( 'click', function () {
-    // t.row.add( [
-    // '<input type="text">',
-    // '<input type="text">',
-    // '<input type="text">',
-    // '<input type="text">',
-    // '<input type="text">'
-    // ] ).draw( false );
-    
-    // counter++;
-    // } );
-  } );
-    
-  </script>
-
-
-  <script>
-    $(document).ready(function() {
-      var table = $('#example').DataTable();
-      $('#example tbody').on( 'click', 'tr', function () {
-          if ( $(this).hasClass('selected') ) {
-              $(this).removeClass('selected');
-          }
-          else {
-              table.$('tr.selected').removeClass('selected');
-              $(this).addClass('selected');
-          }
-      } );
-  
-      $('#button').click( function () {
-          table.row('.selected').remove().draw( false );
-      } );
-  } );
-  </script>
-
-
 
 <!-- modal -->
 <script>
